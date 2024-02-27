@@ -4,16 +4,16 @@ shared:
   steps:
     - init: echo 'init'
 jobs:
-  triggering-stage:
-    requires: [~pr, ~commit]
+  # triggering-stage:
+  #   requires: [~pr, ~commit]
   ci-deploy:
     requires: [~stage@integration:setup]
   ci-test:
     requires: [ci-deploy]
   ci-certify:
     requires: [ci-test]
-  triggered-by-stage:
-    requires: [~stage@integration:teardown]
+  # triggered-by-stage:
+  #   requires: [~stage@integration:teardown]
 
 stages:
   integration:

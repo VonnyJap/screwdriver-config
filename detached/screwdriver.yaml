@@ -15,6 +15,6 @@ jobs:
     steps:
       - echo: echo "Hello, World!"
 
-# stages:
-#   main:
-#     jobs: [main, main2, main3]
+stages:
+  main:
+    jobs: [main, main2, main3]

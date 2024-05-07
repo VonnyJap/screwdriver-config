@@ -1,0 +1,17 @@
+jobs:
+  main:
+    requires: []
+    image: node:18
+    echo: echo "Hello, World!"
+  main2:
+    requires: [main]
+    image: node:18
+    echo: echo "Hello, World!"
+  main3:
+    requires: [main2]
+    image: node:18
+    echo: echo "Hello, World!"
+
+stages:
+  main:
+    jobs: [main, main2, main3]

@@ -1,0 +1,21 @@
+shared:
+    image: node:20
+    steps:
+        - init: echo 'init'
+jobs:
+    triggering-stage:
+        requires: [~pr, ~commit]
+    ci-deploy:
+        requires: [ ~stage@integration ]
+    ci-test:
+        requires: [ ci-deploy ]
+    ci-certify:
+        requires: [ ci-test-batch-1, ci-test-batch-2 ]
+    triggered-by-stage:
+        requires: [ ~stage@integration ]
+
+stages:
+    integration:
+        requires: [triggering-stage]
+        jobs: [ci-deploy, ci-test, ci-certify]
+        description: "This stage will deploy the latest application to CI environment and certifies it after the tests are passed."

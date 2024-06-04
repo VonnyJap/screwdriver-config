@@ -1,0 +1,26 @@
+shared:
+  image: node:20
+  steps:
+    - echo: echo hi
+jobs:
+  hub:
+    requires: [~commit, ~pr]
+  a:
+    requires: []
+  b:
+    requires: [~a]
+  c:
+    requires: [~b]
+    steps:
+    - echo: exit 1;
+  target:
+    requires: [~stage@simple_fail]
+stages:
+  simple_fail:
+    requires: [~hub]
+    jobs: [a, b, c]
+    description: First stage
+    teardown:
+      image: node:lts
+      steps:
+        - init: echo 'integration teardown'

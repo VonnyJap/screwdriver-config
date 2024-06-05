@@ -1,0 +1,24 @@
+---
+version: 4
+shared:
+    image: node:20
+    annotations:
+        screwdriver.cd/cpu: LOW
+        screwdriver.cd/ram: LOW
+
+jobs:
+    meta-set:
+        requires:
+            - ~commit
+        steps:
+            - set-meta: |
+                  set -x
+                  meta set img_version "1.0.0"
+
+    meta-get:
+        requires:
+            - meta-set
+        steps:
+            - get-meta: |
+                  set -x
+                  echo "img_version: $(meta get img_version)"

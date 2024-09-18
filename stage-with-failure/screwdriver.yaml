@@ -31,7 +31,7 @@ jobs:
   prod-blue-test6:
     requires: [ prod-blue-deploy ]
   prod-blue-certify:
-    requires: [ prod-blue-test ]
+    requires: [ prod-blue-test1, prod-blue-test2, prod-blue-test3, prod-blue-test4, prod-blue-test5, prod-blue-test6 ]
 
 
 stages:

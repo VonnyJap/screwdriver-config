@@ -19,9 +19,12 @@ jobs:
   prod-blue-test1:
     requires: [ prod-blue-deploy ]
     steps:
+      - meta-set: meta set example.prod-blue-test1 95;
       - fail: exit 1;
   prod-blue-test2:
     requires: [ prod-blue-deploy ]
+    steps:
+      - set-meta: meta set example.coverage 99.95;
   prod-blue-test3:
     requires: [ prod-blue-deploy ]
   prod-blue-test4:
@@ -47,3 +50,6 @@ stages:
       image: node:lts
       steps:
         - init: echo 'production-blue teardown'
+        - meta-get: |
+            echo $(meta get example.prod-blue-test1)
+            echo $(meta get example.coverage)

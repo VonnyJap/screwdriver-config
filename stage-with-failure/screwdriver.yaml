@@ -9,33 +9,27 @@ jobs:
   publish:
     requires: [ component ]
   ci-deploy:
-    requires: [ publish ]
+    requires: []
   ci-test:
     requires: [ ci-deploy ]
   ci-certify:
     requires: [ ci-test ]
   prod-blue-deploy:
-    requires: [ ci-certify ]
+    requires: []
   prod-blue-test:
     requires: [ prod-blue-deploy ]
     steps:
       - fail: exit 1;
   prod-blue-certify:
     requires: [ prod-blue-test ]
-  prod-green-deploy:
-    requires: [ prod-blue-certify ]
-  prod-green-test:
-    requires: [ prod-green-deploy ]
-  prod-green-certify:
-    requires: [ prod-green-test ]
+
 
 stages:
   integration:
+    requires: [ publish ]
     jobs: [ci-deploy, ci-test, ci-certify]
     description: "This stage will deploy the latest application to CI environment and certifies it after the tests are passed."
   production-blue:
+    requires: [stage@integration]
     jobs: [ prod-blue-deploy, prod-blue-test, prod-blue-certify ]
     description: "This stage will deploy the CI certified application to production BLUE environment and certifies it after the tests are passed."
-  production-green:
-    jobs: [ prod-green-deploy, prod-green-test, prod-green-certify ]
-    description: "This stage will deploy the CI certified application to production GREEN environment and certifies it after the tests are passed."

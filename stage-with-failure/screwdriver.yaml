@@ -33,3 +33,7 @@ stages:
     requires: [stage@integration]
     jobs: [ prod-blue-deploy, prod-blue-test, prod-blue-certify ]
     description: "This stage will deploy the CI certified application to production BLUE environment and certifies it after the tests are passed."
+    teardown:
+      image: node:lts
+      steps:
+        - init: echo 'production-blue teardown'

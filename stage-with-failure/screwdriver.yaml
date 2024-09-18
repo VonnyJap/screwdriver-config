@@ -41,7 +41,7 @@ stages:
     description: "This stage will deploy the latest application to CI environment and certifies it after the tests are passed."
   production-blue:
     requires: [stage@integration]
-    jobs: [ prod-blue-deploy, prod-blue-test, prod-blue-certify ]
+    jobs: [ prod-blue-deploy, prod-blue-test1, prod-blue-test2, prod-blue-test3, prod-blue-test4, prod-blue-test5, prod-blue-test6, prod-blue-certify ]
     description: "This stage will deploy the CI certified application to production BLUE environment and certifies it after the tests are passed."
     teardown:
       image: node:lts

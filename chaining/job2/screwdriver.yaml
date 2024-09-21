@@ -1,0 +1,14 @@
+## Stages by grouping
+shared:
+    image: node:14
+    steps:
+        - init: echo 'init'
+jobs:
+    component:
+        requires: [~pr, ~commit]
+    publish:
+        requires: [ ~component, ~sd15151:publish ]
+    deploy-a:
+        requires: [ publish ]
+    deploy-b:
+        requires: [ publish ]

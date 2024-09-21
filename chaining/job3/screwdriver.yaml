@@ -7,8 +7,6 @@ jobs:
     component:
         requires: [~pr, ~commit]
     publish:
-        requires: [ ~component, ~sd@15152:publish ]
-    deploy-a:
-        requires: [ publish ]
-    deploy-b:
-        requires: [ publish ]
+        requires: [ ~component ]
+    deploy:
+        requires: [ ~sd@15152:deploy, ~publish ]

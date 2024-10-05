@@ -15,4 +15,6 @@ jobs:
     steps:
       - newdir: |
           mkdir -p $SD_ARTIFACTS_DIR/.boom
+          mkdir -p $SD_ARTIFACTS_DIR/boom
           echo "boom boom" > $SD_ARTIFACTS_DIR/.boom/boomfile
+          echo "boom boom" > $SD_ARTIFACTS_DIR/boom/boomfile

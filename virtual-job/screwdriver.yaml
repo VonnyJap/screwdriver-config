@@ -6,6 +6,8 @@ shared:
 jobs:
   triggering-ci:
     requires: [ ~pr, ~commit ]
+    annotations:
+      screwdriver.cd/virtualJob: true
   ci-setup-virtual:
     requires: [ ~triggering-ci ]
     annotations:

@@ -5,22 +5,36 @@ shared:
     annotations:
         screwdriver.cd/cpu: LOW
         screwdriver.cd/ram: LOW
+    parameters:
+        CUSTOM_VERSION: "v.0.0.1"
+        fail: "fail"
+annotations:
+    screwdriver.cd/chainPR: true
 
 jobs:
     meta-set:
-        requires:
-            - ~commit
+        requires: [~pr, ~commit]
         steps:
+            - meta-before-set: |
+                set -x
+                meta get img_version
             - set-meta: |
-                  set -x
-                  meta set img_version "1.1.0"
-            - fail: |
-                  exit 1
-
-    meta-get:
-        requires:
-            - meta-set
+                set -x
+                meta set img_version "$(meta get parameters.CUSTOM_VERSION.value)"
+    meta-middleware:
+        requires: [meta-set]
         steps:
-            - get-meta: |
-                  set -x
-                  echo "img_version: $(meta get img_version)"
+            - decision: |
+                set -x
+                fail_value=$(meta get parameters.fail.value)
+                if [ "$fail_value" = "fail" ]; then
+                    exit 1
+                else
+                    echo "img_version: $(meta get img_version)"
+                fi
+    meta-final:
+        requires: [meta-set, meta-middleware]
+        steps:
+            - success: |
+                echo "success"
+                echo "img_version: $(meta get img_version)"

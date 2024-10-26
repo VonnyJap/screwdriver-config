@@ -5,6 +5,7 @@ shared:
 
 jobs:
   triggering-ci:
+    image: boom:latest
     requires: [ ~pr, ~commit ]
   ci-setup-virtual:
     requires: [ ~triggering-ci ]

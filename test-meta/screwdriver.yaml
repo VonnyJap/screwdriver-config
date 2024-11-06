@@ -1,41 +1,24 @@
 shared:
-  image: node:12
-
-parameters:
-  DOWNSTREAM_PARAM_MUSIC: Rock
-  DOWNSTREAM_PARAM_MOVIE: Sci-Fi
+  image: node:20
 
 jobs:
-  set-meta-v1:
+  Job1:
     requires: [ ~commit ]
     steps:
-      - step_print_template_parameters: |
-          export REASON="hello world"
-          meta set cmr_reason ${REASON}
-  set-meta-v2:
-    requires: [ ~commit ]
+      - meta set x "1"
+
+  Job2:
+    requires: [ ~Job1 ]
     steps:
-      - step_print_template_parameters: |
-          meta set cmr_reason ${REASON}
-  set-meta-v3:
-    requires: [ ~commit ]
+      - echo "nothing"
+
+  Job3:
+    requires: [ ~Job1 ]
     steps:
-      - step_print_template_parameters: |
-          export REASON="hello world"
-          meta set cmr_reason $REASON
-  set-meta-v4:
-    requires: [ ~commit ]
+      - sleep 60
+      - meta set x "2"
+
+  Job4:
+    requires: [ Job2, Job3 ]
     steps:
-      - step_print_template_parameters: |
-          export REASON="hello world"
-          echo $REASON
-          echo ${REASON}
-          meta set cmr_reason "$REASON"
-  set-meta-v5:
-    requires: [ ~commit ]
-    steps:
-      - step_print_template_parameters: |
-          export REASON=55
-          echo $REASON
-          echo ${REASON}
-          meta set cmr_reason $REASON
+      - echo $(meta get x)

@@ -24,6 +24,9 @@ stages:
     setup:
       annotations:
         screwdriver.cd/virtualJob: true
+      image: node:lts
+      steps:
+        - echo: echo "boom"
       sourcePaths: ["boom/", "screwdriver.yaml"]
 #  ci:
 #    requires: [ triggering-stage ]

@@ -8,7 +8,7 @@ jobs:
     requires: [~pr, ~commit]
   ci-deploy:
     requires: [triggering-stage]
-    sourcePaths: ["boom"]
+    sourcePaths: ["boom/"]
   ci-test:
     requires: [ci-deploy]
   ci-certify:

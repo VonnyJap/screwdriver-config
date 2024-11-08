@@ -22,7 +22,9 @@ stages:
     jobs: [ci-deploy, ci-test, ci-certify]
     description: "This stage will deploy the latest application to the CI environment and certify it after the tests have passed."
     setup:
-      sourcePaths: ["boom/"]
+      annotations:
+        screwdriver.cd/virtualJob: true
+      sourcePaths: ["boom/", "screwdriver.yaml"]
 #  ci:
 #    requires: [ triggering-stage ]
 #    jobs: [ ci-deploy, ci-test, ci-certify ]

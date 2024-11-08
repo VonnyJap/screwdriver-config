@@ -6,6 +6,7 @@ shared:
 jobs:
   triggering-stage:
     requires: [~pr, ~commit]
+    sourcePaths: ["boom/"]
   ci-deploy:
     requires: [triggering-stage]
     sourcePaths: ["boom/"]

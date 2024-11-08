@@ -25,7 +25,6 @@ stages:
       image: node:lts
       steps:
         - echo: echo "boom"
-      sourcePaths: ["boom/"]
 #  ci:
 #    requires: [ triggering-stage ]
 #    jobs: [ ci-deploy, ci-test, ci-certify ]

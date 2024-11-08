@@ -4,10 +4,11 @@ shared:
   steps:
     - init: echo 'init'
 jobs:
-  # triggering-stage:
-  #   requires: [~pr, ~commit]
+  triggering-stage:
+    requires: [~pr, ~commit]
   ci-deploy:
-    requires: []
+    requires: [triggering-stage]
+    sourcePaths: ["boom"]
   ci-test:
     requires: [ci-deploy]
   ci-certify:
@@ -15,11 +16,11 @@ jobs:
   triggered-by-stage:
     requires: [~stage@integration]
 
-stages:
-  integration:
-    requires: [~commit]
-    jobs: [ci-deploy, ci-test, ci-certify]
-    description: "This stage will deploy the latest application to the CI environment and certify it after the tests have passed."
+# stages:
+#   integration:
+#     requires: [~commit]
+#     jobs: [ci-deploy, ci-test, ci-certify]
+#     description: "This stage will deploy the latest application to the CI environment and certify it after the tests have passed."
 #  ci:
 #    requires: [ triggering-stage ]
 #    jobs: [ ci-deploy, ci-test, ci-certify ]

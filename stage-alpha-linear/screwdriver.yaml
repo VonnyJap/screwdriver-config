@@ -22,8 +22,6 @@ stages:
     jobs: [ci-deploy, ci-test, ci-certify]
     description: "This stage will deploy the latest application to the CI environment and certify it after the tests have passed."
     setup:
-      annotations:
-        screwdriver.cd/virtualJob: true
       image: node:lts
       steps:
         - echo: echo "boom"

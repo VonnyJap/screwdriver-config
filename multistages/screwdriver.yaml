@@ -1,0 +1,94 @@
+version: 4
+
+jobs:
+
+  cat: 
+    requires: []
+    image: node:20
+    steps:
+      - echo: echo "Cat is the best"
+
+  dog:
+    requires: [cat]
+    freezeWindows: ['* 0-10,16-20 ? * *']
+    image: node:20
+    steps:
+      - echo: echo "Dog is the best"
+
+  rabbit:
+    requires: [dog]
+    image: node:20
+    steps:
+      - echo: echo "Rabbit is the best"
+
+  daisy: 
+    image: node:20
+    steps:
+      - echo: echo "Daisy is the best"
+
+  rose:
+    image: node:20
+    steps:
+      - echo: echo "Rose is the best"
+  
+  lily:
+    image: node:20
+    steps:
+      - echo: echo "Lily is the best" 
+
+  sunflower:
+    image: node:20
+    steps:
+      - echo: echo "Sunflower is the best"
+
+  tulip:
+    image: node:20
+    steps:
+      - echo: echo "Tulip is the best"
+
+  pasta:
+    image: node:20
+    steps:
+      - echo: echo "Pasta is the best"
+
+  noodles:
+    image: node:20
+    steps:
+      - echo: echo "Noodles is the best"
+
+  rice:
+    image: node:20
+    steps:
+      - echo: echo "Rice is the best"
+
+  soda:
+    image: node:20
+    steps:
+      - echo: echo "Soda is the best"
+
+  juice:
+    image: node:20
+    steps:
+      - echo: echo "Juice is the best"
+
+  water:
+    image: node:20
+    steps:
+      - echo: echo "Water is the best"
+
+stages:
+  pets:
+    jobs: [cat, dog, rabbit]
+    description: "This stage groups all the pets together"
+
+  flowers:
+    jobs: [daisy, rose, lily, sunflower, tulip]
+    description: "This stage groups all the flowers together"
+
+  food:
+    jobs: [pasta, noodles, rice]
+    description: "This stage groups all the food together"
+
+  drinks:
+    jobs: [soda, juice, water]
+    description: "This stage groups all the drinks together"

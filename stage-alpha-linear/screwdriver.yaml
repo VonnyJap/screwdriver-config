@@ -13,8 +13,8 @@ jobs:
     requires: [ci-deploy]
   ci-certify:
     requires: [ci-test]
-  # triggered-by-stage:
-  #   requires: [~stage@integration]
+  triggered-by-stage:
+    requires: [~stage@integration]
 
 stages:
   integration:

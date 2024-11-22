@@ -11,6 +11,8 @@ jobs:
       - echo: echo "Hello, World!"
       - export: export NAME=boom
       - boom: echo $NAME
+      - fail: exit 1
+      - teardown-check: echo $NAME
   main3:
     requires: [main2]
     image: node:18

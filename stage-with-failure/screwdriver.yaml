@@ -1,6 +1,6 @@
 ## Stages by grouping
 shared:
-  image: node:14
+  image: boom
   steps:
     - init: echo 'init'
 jobs:

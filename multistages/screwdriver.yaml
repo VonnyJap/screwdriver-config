@@ -10,7 +10,7 @@ jobs:
 
   dog:
     requires: [cat]
-    freezeWindows: ['* 0-10,16-20 ? * *']
+    freezeWindows: ['* 0-10,16-22 ? * *']
     image: node:20
     steps:
       - echo: echo "Dog is the best"

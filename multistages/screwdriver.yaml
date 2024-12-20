@@ -6,14 +6,14 @@ jobs:
     requires: []
     image: node:20
     steps:
-      - echo: echo "Cat is the best"
+      - echo: meta set note "Cat is the best"
 
   dog:
     requires: [cat]
     freezeWindows: ['* 0-10,16-22 ? * *']
     image: node:20
     steps:
-      - echo: echo "Dog is the best"
+      - echo: echo $(meta get note)
 
   rabbit:
     requires: [dog]

@@ -26,3 +26,10 @@ jobs:
             - get-meta: |
                   set -x
                   meta get img_version
+    remote-downstream:
+        requires:
+            - ~sd@23027:main
+        steps:                  
+            - get-meta: |
+                  set -x
+                  meta get img_version

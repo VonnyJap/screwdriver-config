@@ -28,6 +28,8 @@ jobs:
                       echo 'skip setting meta'
                       echo 'meta is already set $(meta get img_version)'
                   fi
+            - force-set-meta: |
+                  meta set img_version "$(meta get parameters.CUSTOM_VERSION.value)"
             - get-meta: |
                   set -x
                   meta get img_version

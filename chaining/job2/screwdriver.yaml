@@ -8,5 +8,7 @@ jobs:
         requires: [~pr, ~commit]
     publish:
         requires: [ ~component, ~sd@15151:publish ]
+        steps:
+          - warning: meta set build.warning true
     deploy:
         requires: [ sd@15151:deploy-a, sd@15152:deploy-b ]

@@ -7,6 +7,8 @@ jobs:
   triggering-ci:
     image: boom:latest
     requires: [ ~pr, ~commit ]
+    annotations:
+      screwdriver.cd/virtualJob: true
   ci-setup-virtual:
     requires: [ ~triggering-ci ]
     annotations:

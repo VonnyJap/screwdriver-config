@@ -6,7 +6,7 @@ jobs:
     requires: []
     image: node:20
     steps:
-      - echo: meta set note "Cat is the best"
+      - echo: meta set note "Cat is the best. Really?"
 
   dog:
     requires: [cat]
